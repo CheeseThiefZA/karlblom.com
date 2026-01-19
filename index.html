@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karl Blom | Lawyer, Tech Enthusiast & Father</title>
+    <meta name="description" content="Karl Blom - Dad, Lawyer, Tech Nerd. Landing page for things I'm doing at the moment.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #2D5A3D;
+            --sage: #7A9E7E;
+            --mint: #B8D4BB;
+            --cream: #FAF8F5;
+            --warm-white: #FEFDFB;
+            --wood: #8B7355;
+            --wood-light: #C4A77D;
+            --charcoal: #2C2C2C;
+            --text: #3A3A3A;
+            --text-light: #6B6B6B;
+            --error: #c0392b;
+            --success: #27ae60;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(180deg, var(--cream) 0%, transparent 100%);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--forest);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--forest);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--forest); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px; height: 2px;
+            background: var(--charcoal);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; right: 0;
+            width: 55%; height: 100%;
+            background: linear-gradient(135deg, var(--mint) 0%, var(--sage) 50%, var(--forest) 100%);
+            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
+            opacity: 0.15;
+        }
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-text {
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--forest);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(45, 90, 61, 0.08);
+            border-radius: 4px;
+            border-left: 3px solid var(--forest);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+        .hero h1 span { color: var(--forest); }
+        .hero-tagline {
+            font-size: 1.35rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            font-weight: 300;
+        }
+        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--forest);
+            color: white;
+            box-shadow: 0 4px 20px rgba(45, 90, 61, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(45, 90, 61, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--forest);
+            border: 2px solid var(--forest);
+        }
+        .btn-secondary:hover {
+            background: var(--forest);
+            color: white;
+        }
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        .hero-photo-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15), 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .hero-photo-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--forest), var(--sage), var(--wood-light));
+            z-index: 2;
+        }
+        .hero-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .projects { padding: 6rem 3rem; background: var(--warm-white); }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { margin-bottom: 3rem; }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--forest);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--charcoal);
+            letter-spacing: -1px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: var(--cream);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+        }
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--mint) 0%, var(--sage) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .project-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(180deg, transparent, rgba(45, 90, 61, 0.3));
+        }
+        .project-icon {
+            width: 80px; height: 80px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .project-icon svg { width: 40px; height: 40px; stroke: white; fill: none; stroke-width: 1.5; }
+        .project-content { padding: 2rem; }
+        .project-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--forest);
+            background: rgba(45, 90, 61, 0.1);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+        .project-card p { color: var(--text-light); font-size: 0.95rem; }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--forest);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .project-link svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
+        .project-card:hover .project-link svg { transform: translateX(5px); }
+        .contact {
+            padding: 6rem 3rem;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--mint) 100%);
+        }
+        .contact-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .contact-info { padding-right: 2rem; }
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .social-links { display: flex; flex-direction: column; gap: 1rem; }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--warm-white);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .social-link:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .social-link.linkedin:hover { background: #0077B5; color: white; }
+        .social-link.twitter:hover { background: #1DA1F2; color: white; }
+        .social-link.github:hover { background: var(--charcoal); color: white; }
+        .social-link svg { width: 24px; height: 24px; flex-shrink: 0; }
+        .contact-form-container {
+            background: var(--warm-white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.08), 0 8px 25px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--forest), var(--sage), var(--wood-light));
+        }
+        .contact-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        .contact-form .form-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(0,0,0,0.08);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--forest);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(45, 90, 61, 0.1);
+        }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--text-light); opacity: 0.6; }
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: var(--forest);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .submit-btn:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(45, 90, 61, 0.4);
+        }
+        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .submit-btn svg { width: 20px; height: 20px; }
+        @media (max-width: 968px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--warm-white);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-bg { width: 100%; clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%); opacity: 0.1; }
+            .hero-visual { order: -1; max-width: 400px; margin: 0 auto; }
+            .projects, .contact { padding: 4rem 1.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-info { padding-right: 0; text-align: center; }
+            .social-links { align-items: center; }
+            .social-link { width: 100%; max-width: 300px; justify-content: center; }
+            .contact-form-container { padding: 2rem; }
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="#" class="logo">KB</a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Welcome
+                </div>
+                <h1>Karl <span>Blom</span></h1>
+                <p class="hero-tagline">Dad, Lawyer, Tech Nerd. This site is my landing page for things that I am doing at the moment - please reach out if you want to chat!</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">
+                        Get in Touch
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">See Projects</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-photo-container">
+                    <img src="photo.jpg" alt="Karl Blom" class="hero-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Side Projects</span>
+                <h2 class="section-title">Things I'm Building</h2>
+            </div>
+            <div class="projects-grid">
+                <a href="https://github.com/CheeseThiefZA/family-tasks" target="_blank" rel="noopener" class="project-card reveal">
+                    <div class="project-image" style="background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood) 100%);">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Open Source</span>
+                        <h3>Family Tasks Tracker</h3>
+                        <p>A real-time task tracker built with Next.js and Upstash Redis. Password protected, multi-user, and mobile-friendly. Because even chores deserve good UX.</p>
+                        <span class="project-link">
+                            View on GitHub
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+                <div class="project-card reveal" style="cursor: default;">
+                    <div class="project-image" style="background: linear-gradient(135deg, var(--mint) 0%, var(--forest) 100%);">
+                        <div class="project-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Coming Soon</span>
+                        <h3>More Projects</h3>
+                        <p>Always tinkering with new ideas at the intersection of law and technology. Watch this space for upcoming experiments and tools.</p>
+                        <span class="project-link" style="color: var(--text-light);">
+                            Stay tuned
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info reveal">
+                <span class="section-label">Let's Connect</span>
+                <h2>Say Hello</h2>
+                <p>Whether it's about technology, law, a coding project, or just to chat—I'd love to hear from you. Drop me a message or find me on social media.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/karl-blom-32086210b/" target="_blank" rel="noopener" class="social-link linkedin">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://twitter.com/KarlAndreBlom" target="_blank" rel="noopener" class="social-link twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        @KarlAndreBlom
+                    </a>
+                    <a href="https://github.com/CheeseThiefZA" target="_blank" rel="noopener" class="social-link github">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form-container reveal">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <h3>Send a Message</h3>
+                    <p class="form-subtitle">I'll get back to you as soon as I can.</p>
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell me what's on your mind..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        function closeMenu() { document.getElementById('navLinks').classList.remove('active'); }
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 150) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

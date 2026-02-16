@@ -3,643 +3,878 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karl Blom | Lawyer, Tech Enthusiast & Father</title>
+    <title>Karl Blom | Dad, Lawyer, Tech Nerd</title>
     <meta name="description" content="Karl Blom - Dad, Lawyer, Tech Nerd. Landing page for things I'm doing at the moment.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --forest: #2D5A3D;
-            --sage: #7A9E7E;
-            --mint: #B8D4BB;
-            --cream: #FAF8F5;
-            --warm-white: #FEFDFB;
-            --wood: #8B7355;
-            --wood-light: #C4A77D;
-            --charcoal: #2C2C2C;
-            --text: #3A3A3A;
-            --text-light: #6B6B6B;
-            --error: #c0392b;
-            --success: #27ae60;
+            --bg-dark: #1a1e1c;
+            --bg-darker: #0f1210;
+            --card-bg: rgba(250, 248, 245, 0.92);
+            --text-dark: #3c3b3b;
+            --text-muted: #a8a3a3;
+            --text-light-muted: #999494;
+            --accent: #6b8f71;
+            --accent-hover: #7fa886;
+            --link-color: #6b8f71;
+            --nav-inactive: #3c3b3b;
+            --divider: #c8c3c3;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--cream);
-            color: var(--text);
+            font-family: Georgia, Palatino, 'Book Antiqua', 'Palatino Linotype', serif;
+            color: var(--text-dark);
             line-height: 1.7;
             overflow-x: hidden;
+            background: var(--bg-darker);
         }
-        body::before {
-            content: '';
+
+        /* ── Atmospheric background ── */
+        .atmosphere {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1000;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 120% 60% at 30% 20%, rgba(210, 205, 195, 0.7) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 50% at 70% 15%, rgba(235, 230, 220, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 40% at 50% 80%, rgba(40, 55, 45, 0.8) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 30% at 20% 70%, rgba(30, 45, 35, 0.6) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 35% at 80% 75%, rgba(35, 50, 40, 0.7) 0%, transparent 60%),
+                linear-gradient(180deg,
+                    rgba(220, 215, 205, 0.9) 0%,
+                    rgba(190, 185, 175, 0.6) 20%,
+                    rgba(120, 125, 115, 0.5) 40%,
+                    rgba(60, 70, 60, 0.7) 55%,
+                    rgba(30, 40, 30, 0.9) 70%,
+                    rgba(15, 20, 15, 1) 100%
+                );
         }
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: linear-gradient(180deg, var(--cream) 0%, transparent 100%);
-            transition: all 0.3s ease;
-        }
-        nav.scrolled {
-            background: rgba(250, 248, 245, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--forest);
-            text-decoration: none;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-links a::after {
+
+        .atmosphere::after {
             content: '';
             position: absolute;
-            bottom: -4px; left: 0;
-            width: 0; height: 2px;
-            background: var(--forest);
-            transition: width 0.3s ease;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.06;
+            mix-blend-mode: overlay;
         }
-        .nav-links a:hover { color: var(--forest); }
-        .nav-links a:hover::after { width: 100%; }
+
+        /* ── Wave shapes in the atmosphere ── */
+        .wave-layer {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%; height: 45%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .wave-layer svg {
+            position: absolute;
+            bottom: 0;
+            width: 120%;
+            left: -10%;
+        }
+
+        /* ── Page container ── */
+        .page-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        /* ══════════════════════════════════
+           HOME / HERO SECTION
+        ══════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-name {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--text-light-muted);
+            letter-spacing: 0.35em;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-title {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+            color: var(--text-muted);
+            letter-spacing: 0.25em;
+            margin-bottom: 3rem;
+            line-height: 1.3;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        nav a {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--nav-inactive);
+            padding: 0.5rem 2rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav .nav-divider {
+            width: 1px;
+            height: 20px;
+            background: var(--divider);
+            flex-shrink: 0;
+        }
+
+        /* ── Mobile menu ── */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 200;
         }
+
         .mobile-menu-btn span {
             display: block;
-            width: 25px; height: 2px;
-            background: var(--charcoal);
-            margin: 5px 0;
+            width: 25px;
+            height: 1.5px;
+            background: var(--text-muted);
+            margin: 6px 0;
             transition: all 0.3s ease;
         }
-        .hero {
-            min-height: 100vh;
+
+        /* ══════════════════════════════════
+           CONTENT SECTIONS (card style)
+        ══════════════════════════════════ */
+        .content-section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 2px;
+            padding: 3rem 4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ── Section nav (top of cards) ── */
+        .section-nav {
             display: flex;
             align-items: center;
-            padding: 8rem 3rem 4rem;
-            position: relative;
-            overflow: hidden;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 2.5rem;
+            padding-bottom: 0;
         }
-        .hero-bg {
-            position: absolute;
-            top: 0; right: 0;
-            width: 55%; height: 100%;
-            background: linear-gradient(135deg, var(--mint) 0%, var(--sage) 50%, var(--forest) 100%);
-            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
-            opacity: 0.15;
+
+        .section-nav a {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            text-decoration: none;
+            color: var(--nav-inactive);
+            padding: 0.5rem 1.5rem;
+            transition: color 0.3s ease;
         }
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
+
+        .section-nav a:hover,
+        .section-nav a.active {
+            color: var(--accent);
+        }
+
+        .section-nav .nav-divider {
+            width: 1px;
+            height: 18px;
+            background: var(--divider);
+            flex-shrink: 0;
+        }
+
+        /* ── Section heading ── */
+        .section-heading {
+            font-family: Georgia, Palatino, 'Book Antiqua', 'Palatino Linotype', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            letter-spacing: 0.25em;
+            margin-bottom: 2rem;
+        }
+
+        /* ── Body text in cards ── */
+        .card-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        .card-body p {
+            margin-bottom: 1.2rem;
+        }
+
+        .card-body a {
+            color: var(--link-color);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .card-body a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* ── Two column layout (text + image) ── */
+        .card-grid {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            gap: 3rem;
+            align-items: start;
         }
-        .hero-text {
-            animation: fadeInUp 1s ease forwards;
-            opacity: 0;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--forest);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(45, 90, 61, 0.08);
+
+        .card-image {
             border-radius: 4px;
-            border-left: 3px solid var(--forest);
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 600;
-            line-height: 1.1;
-            color: var(--charcoal);
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
-        .hero h1 span { color: var(--forest); }
-        .hero-tagline {
-            font-size: 1.35rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            font-weight: 300;
-        }
-        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary {
-            background: var(--forest);
-            color: white;
-            box-shadow: 0 4px 20px rgba(45, 90, 61, 0.3);
-        }
-        .btn-primary:hover {
-            background: var(--sage);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(45, 90, 61, 0.4);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--forest);
-            border: 2px solid var(--forest);
-        }
-        .btn-secondary:hover {
-            background: var(--forest);
-            color: white;
-        }
-        .hero-visual {
-            position: relative;
-            animation: fadeInUp 1s ease 0.3s forwards;
-            opacity: 0;
-        }
-        .hero-photo-container {
-            position: relative;
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.15), 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
         }
-        .hero-photo-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--forest), var(--sage), var(--wood-light));
-            z-index: 2;
-        }
-        .hero-photo {
+
+        .card-image img {
             width: 100%;
             height: auto;
             display: block;
         }
-        .projects { padding: 6rem 3rem; background: var(--warm-white); }
-        .section-container { max-width: 1200px; margin: 0 auto; }
-        .section-header { margin-bottom: 3rem; }
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--forest);
+
+        /* ══════════════════════════════════
+           PROJECTS SECTION
+        ══════════════════════════════════ */
+        .project-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+        }
+
+        .project-item h3 {
+            font-family: Georgia, Palatino, 'Book Antiqua', 'Palatino Linotype', serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-item .project-tag {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--charcoal);
-            letter-spacing: -1px;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .project-card {
-            background: var(--cream);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
-        }
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--mint) 0%, var(--sage) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .project-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 60%;
-            background: linear-gradient(180deg, transparent, rgba(45, 90, 61, 0.3));
-        }
-        .project-icon {
-            width: 80px; height: 80px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-        }
-        .project-icon svg { width: 40px; height: 40px; stroke: white; fill: none; stroke-width: 1.5; }
-        .project-content { padding: 2rem; }
-        .project-tag {
+            color: var(--accent);
+            margin-bottom: 0.75rem;
             display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--forest);
-            background: rgba(45, 90, 61, 0.1);
-            padding: 0.35rem 0.75rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
         }
-        .project-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--charcoal);
+
+        .project-item p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.7;
             margin-bottom: 0.75rem;
         }
-        .project-card p { color: var(--text-light); font-size: 0.95rem; }
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            color: var(--forest);
-            font-weight: 600;
-            font-size: 0.9rem;
+
+        .project-item a.project-link {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            color: var(--link-color);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
         }
-        .project-link svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
-        .project-card:hover .project-link svg { transform: translateX(5px); }
-        .contact {
-            padding: 6rem 3rem;
-            background: linear-gradient(180deg, var(--warm-white) 0%, var(--mint) 100%);
+
+        .project-item a.project-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
         }
-        .contact-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* ══════════════════════════════════
+           CONTACT SECTION
+        ══════════════════════════════════ */
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: start;
         }
-        .contact-info { padding-right: 2rem; }
-        .contact-info h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            color: var(--charcoal);
-            margin-bottom: 1.5rem;
-        }
-        .contact-info p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-        .social-links { display: flex; flex-direction: column; gap: 1rem; }
-        .social-link {
+
+        .social-links {
             display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 1.5rem;
-            background: var(--warm-white);
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-        .social-link:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-        .social-link.linkedin:hover { background: #0077B5; color: white; }
-        .social-link.twitter:hover { background: #1DA1F2; color: white; }
-        .social-link.github:hover { background: var(--charcoal); color: white; }
-        .social-link svg { width: 24px; height: 24px; flex-shrink: 0; }
-        .contact-form-container {
-            background: var(--warm-white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.08), 0 8px 25px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-form-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--forest), var(--sage), var(--wood-light));
-        }
-        .contact-form h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--charcoal);
-            margin-bottom: 0.5rem;
-        }
-        .contact-form .form-subtitle {
-            color: var(--text-light);
-            margin-bottom: 2rem;
+            gap: 0.6rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
             font-size: 0.95rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.3rem 0;
         }
-        .form-group { margin-bottom: 1.5rem; }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ── Contact form ── */
+        .contact-form h3 {
+            font-family: Georgia, Palatino, 'Book Antiqua', 'Palatino Linotype', serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .form-subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
         .form-group label {
             display: block;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.03em;
         }
+
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem 1.25rem;
-            border: 2px solid rgba(0,0,0,0.08);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 2px;
+            font-family: Georgia, Palatino, serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.6);
             transition: all 0.3s ease;
-            background: var(--cream);
         }
+
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--forest);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(45, 90, 61, 0.1);
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.9);
         }
-        .form-group textarea { min-height: 150px; resize: vertical; }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
         .form-group input::placeholder,
-        .form-group textarea::placeholder { color: var(--text-light); opacity: 0.6; }
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
         .submit-btn {
-            width: 100%;
-            padding: 1.25rem 2rem;
-            background: var(--forest);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            padding: 0.9rem 2.5rem;
+            background: var(--accent);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 2px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
         }
+
         .submit-btn:hover {
-            background: var(--sage);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(45, 90, 61, 0.4);
+            background: var(--accent-hover);
         }
-        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .submit-btn svg { width: 20px; height: 20px; }
-        @media (max-width: 968px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%; left: 0; right: 0;
-                background: var(--warm-white);
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ══════════════════════════════════
+           FOOTER
+        ══════════════════════════════════ */
+        .footer {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-socials a {
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+        }
+
+        .footer-socials svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════ */
+        @media (max-width: 768px) {
+            .hero-name { font-size: 1rem; }
+            .hero-title { font-size: 1.8rem; letter-spacing: 0.2em; }
+
+            nav {
                 flex-direction: column;
-                padding: 1.5rem;
-                gap: 1rem;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 0;
+                display: none;
             }
-            .nav-links.active { display: flex; }
-            .mobile-menu-btn { display: block; }
-            .hero { padding: 6rem 1.5rem 3rem; }
-            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-bg { width: 100%; clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%); opacity: 0.1; }
-            .hero-visual { order: -1; max-width: 400px; margin: 0 auto; }
-            .projects, .contact { padding: 4rem 1.5rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
-            .contact-info { padding-right: 0; text-align: center; }
-            .social-links { align-items: center; }
-            .social-link { width: 100%; max-width: 300px; justify-content: center; }
-            .contact-form-container { padding: 2rem; }
+
+            nav.active {
+                display: flex;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(250, 248, 245, 0.97);
+                z-index: 100;
+                justify-content: center;
+                padding-top: 4rem;
+            }
+
+            nav.active .nav-divider {
+                width: 40px;
+                height: 1px;
+                margin: 0.3rem 0;
+            }
+
+            nav.active a {
+                padding: 0.8rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: fixed;
+                top: 1.5rem;
+                right: 1.5rem;
+                z-index: 200;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .card-image {
+                order: -1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-nav {
+                flex-wrap: wrap;
+                gap: 0.2rem;
+            }
+
+            .section-nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .section-heading {
+                font-size: 1.3rem;
+                letter-spacing: 0.15em;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
         }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Sections visibility & transitions ── */
+        .section-page {
+            display: none;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section-page.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Scroll indicator on hero ── */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-hint:hover { opacity: 1; }
+
+        .scroll-hint svg {
+            width: 16px;
+            height: 16px;
+            animation: bobDown 2s ease-in-out infinite;
+        }
+
+        @keyframes bobDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
     </style>
 </head>
 <body>
-    <nav id="navbar">
-        <a href="#" class="logo">KB</a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+
+    <!-- Atmospheric background -->
+    <div class="atmosphere"></div>
+
+    <!-- Wave decoration -->
+    <div class="wave-layer">
+        <svg viewBox="0 0 1440 400" preserveAspectRatio="none" style="height: 100%; opacity: 0.25;">
+            <path d="M0,250 C180,200 360,300 540,250 C720,200 900,280 1080,230 C1260,180 1350,260 1440,240 L1440,400 L0,400 Z" fill="rgba(25,35,25,0.6)"/>
+            <path d="M0,300 C200,260 400,320 600,280 C800,240 1000,310 1200,270 C1320,250 1400,290 1440,280 L1440,400 L0,400 Z" fill="rgba(20,30,20,0.8)"/>
+            <path d="M0,340 C240,310 480,360 720,330 C960,300 1100,350 1440,320 L1440,400 L0,400 Z" fill="rgba(15,18,15,1)"/>
+        </svg>
+    </div>
+
+    <div class="page-wrapper">
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu" id="mobileBtn">
             <span></span><span></span><span></span>
         </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-label">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    Welcome
-                </div>
-                <h1>Karl <span>Blom</span></h1>
-                <p class="hero-tagline">Dad, Lawyer, Tech Nerd. This site is my landing page for things that I am doing at the moment - please reach out if you want to chat!</p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">
-                        Get in Touch
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                    <a href="#projects" class="btn btn-secondary">See Projects</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-photo-container">
-                    <img src="photo.jpg" alt="Karl Blom" class="hero-photo">
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- ════════ HERO ════════ -->
+        <section class="hero" id="hero">
+            <p class="hero-name">K a r l &nbsp;&nbsp; B l o m</p>
+            <h1 class="hero-title">D A D &nbsp; · &nbsp; L A W Y E R &nbsp; · &nbsp; T E C H &nbsp; N E R D</h1>
+            <nav id="mainNav">
+                <a href="#" class="active" onclick="showSection('home', event)">Home</a>
+                <span class="nav-divider"></span>
+                <a href="#" onclick="showSection('about', event)">About</a>
+                <span class="nav-divider"></span>
+                <a href="#" onclick="showSection('projects', event)">Projects</a>
+                <span class="nav-divider"></span>
+                <a href="#" onclick="showSection('contact', event)">Contact</a>
+            </nav>
+        </section>
 
-    <section class="projects" id="projects">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <span class="section-label">Side Projects</span>
-                <h2 class="section-title">Things I'm Building</h2>
-            </div>
-            <div class="projects-grid">
-                <a href="https://github.com/CheeseThiefZA/family-tasks" target="_blank" rel="noopener" class="project-card reveal">
-                    <div class="project-image" style="background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood) 100%);">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <!-- ════════ ABOUT SECTION ════════ -->
+        <div class="section-page" id="section-about">
+            <div class="content-section">
+                <div class="card">
+                    <div class="section-nav">
+                        <a href="#" onclick="showSection('home', event)">Home</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" class="active" onclick="showSection('about', event)">About</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" onclick="showSection('projects', event)">Projects</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" onclick="showSection('contact', event)">Contact</a>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="card-body">
+                            <h2 class="section-heading">A b o u t</h2>
+                            <p>I'm Karl Blom — a dad, lawyer, and self-proclaimed tech nerd based in South Africa. This site is my landing page for things that I am doing at the moment.</p>
+                            <p>By day, I work in law. By night (and most weekends), I tinker with code, build side projects, and explore the intersection of technology and everyday life.</p>
+                            <p>Whether it's about technology, law, a coding project, or just to chat — I'd love to hear from you. Please <a href="#" onclick="showSection('contact', event)">reach out</a> if you want to connect.</p>
+                        </div>
+                        <div class="card-image">
+                            <img src="photo.jpg" alt="Karl Blom">
                         </div>
                     </div>
-                    <div class="project-content">
-                        <span class="project-tag">Open Source</span>
-                        <h3>Family Tasks Tracker</h3>
-                        <p>A real-time task tracker built with Next.js and Upstash Redis. Password protected, multi-user, and mobile-friendly. Because even chores deserve good UX.</p>
-                        <span class="project-link">
-                            View on GitHub
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </span>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="footer-copy">&copy; 2025 Karl Blom</span>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/karl-blom-32086210b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/KarlAndreBlom" target="_blank" rel="noopener" aria-label="X / Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://github.com/CheeseThiefZA" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════ PROJECTS SECTION ════════ -->
+        <div class="section-page" id="section-projects">
+            <div class="content-section">
+                <div class="card">
+                    <div class="section-nav">
+                        <a href="#" onclick="showSection('home', event)">Home</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" onclick="showSection('about', event)">About</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" class="active" onclick="showSection('projects', event)">Projects</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" onclick="showSection('contact', event)">Contact</a>
                     </div>
-                </a>
-                <div class="project-card reveal" style="cursor: default;">
-                    <div class="project-image" style="background: linear-gradient(135deg, var(--mint) 0%, var(--forest) 100%);">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+
+                    <h2 class="section-heading">P r o j e c t s</h2>
+
+                    <div class="card-body">
+                        <div class="project-item">
+                            <span class="project-tag">Open Source</span>
+                            <h3>Family Tasks Tracker</h3>
+                            <p>A real-time task tracker built with Next.js and Upstash Redis. Password protected, multi-user, and mobile-friendly. Because even chores deserve good UX.</p>
+                            <a href="https://github.com/CheeseThiefZA/family-tasks" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+                        </div>
+
+                        <div class="project-item">
+                            <span class="project-tag">Coming Soon</span>
+                            <h3>More Projects</h3>
+                            <p>Always tinkering with new ideas at the intersection of law and technology. Watch this space for upcoming experiments and tools.</p>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <span class="project-tag">Coming Soon</span>
-                        <h3>More Projects</h3>
-                        <p>Always tinkering with new ideas at the intersection of law and technology. Watch this space for upcoming experiments and tools.</p>
-                        <span class="project-link" style="color: var(--text-light);">
-                            Stay tuned
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </span>
-                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="footer-copy">&copy; 2025 Karl Blom</span>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/karl-blom-32086210b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/KarlAndreBlom" target="_blank" rel="noopener" aria-label="X / Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://github.com/CheeseThiefZA" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="contact" id="contact">
-        <div class="contact-wrapper">
-            <div class="contact-info reveal">
-                <span class="section-label">Let's Connect</span>
-                <h2>Say Hello</h2>
-                <p>Whether it's about technology, law, a coding project, or just to chat—I'd love to hear from you. Drop me a message or find me on social media.</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/karl-blom-32086210b/" target="_blank" rel="noopener" class="social-link linkedin">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                        LinkedIn
+        <!-- ════════ CONTACT SECTION ════════ -->
+        <div class="section-page" id="section-contact">
+            <div class="content-section">
+                <div class="card">
+                    <div class="section-nav">
+                        <a href="#" onclick="showSection('home', event)">Home</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" onclick="showSection('about', event)">About</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" onclick="showSection('projects', event)">Projects</a>
+                        <span class="nav-divider"></span>
+                        <a href="#" class="active" onclick="showSection('contact', event)">Contact</a>
+                    </div>
+
+                    <h2 class="section-heading">C o n t a c t</h2>
+
+                    <div class="contact-grid">
+                        <div class="card-body">
+                            <p>Whether it's about technology, law, a coding project, or just to chat — I'd love to hear from you. Drop me a message or find me on social media.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/karl-blom-32086210b/" target="_blank" rel="noopener" class="social-link">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                    LinkedIn
+                                </a>
+                                <a href="https://twitter.com/KarlAndreBlom" target="_blank" rel="noopener" class="social-link">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                    @KarlAndreBlom
+                                </a>
+                                <a href="https://github.com/CheeseThiefZA" target="_blank" rel="noopener" class="social-link">
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mdaagjbv" method="POST">
+                                <h3>Send a Message</h3>
+                                <p class="form-subtitle">I'll get back to you as soon as I can.</p>
+                                <div class="form-group">
+                                    <label for="name">Your Name *</label>
+                                    <input type="text" id="name" name="name" placeholder="John Smith" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email *</label>
+                                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message *</label>
+                                    <textarea id="message" name="message" placeholder="Tell me what's on your mind..." required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="footer-copy">&copy; 2025 Karl Blom</span>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/karl-blom-32086210b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
-                    <a href="https://twitter.com/KarlAndreBlom" target="_blank" rel="noopener" class="social-link twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                        @KarlAndreBlom
+                    <a href="https://twitter.com/KarlAndreBlom" target="_blank" rel="noopener" aria-label="X / Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     </a>
-                    <a href="https://github.com/CheeseThiefZA" target="_blank" rel="noopener" class="social-link github">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        GitHub
+                    <a href="https://github.com/CheeseThiefZA" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     </a>
                 </div>
             </div>
-            <div class="contact-form-container reveal">
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mdaagjbv" method="POST">
-                    <h3>Send a Message</h3>
-                    <p class="form-subtitle">I'll get back to you as soon as I can.</p>
-                    <div class="form-group">
-                        <label for="name">Your Name *</label>
-                        <input type="text" id="name" name="name" placeholder="John Smith" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email *</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="What's this about?">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Tell me what's on your mind..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span>Send Message</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                        </svg>
-                    </button>
-                </form>
-            </div>
         </div>
-    </section>
+
+    </div>
 
     <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
-        function closeMenu() { document.getElementById('navLinks').classList.remove('active'); }
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            reveals.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 150) {
-                    el.classList.add('visible');
+        function showSection(section, event) {
+            if (event) event.preventDefault();
+
+            // Hide hero & all sections
+            const hero = document.getElementById('hero');
+            const sections = document.querySelectorAll('.section-page');
+
+            if (section === 'home') {
+                hero.style.display = 'flex';
+                sections.forEach(s => s.classList.remove('visible'));
+                // Update hero nav active state
+                document.querySelectorAll('#mainNav a').forEach(a => a.classList.remove('active'));
+                document.querySelector('#mainNav a').classList.add('active');
+            } else {
+                hero.style.display = 'none';
+                sections.forEach(s => s.classList.remove('visible'));
+                const target = document.getElementById('section-' + section);
+                if (target) {
+                    target.classList.add('visible');
+                    window.scrollTo(0, 0);
                 }
-            });
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+                // Update hero nav
+                document.querySelectorAll('#mainNav a').forEach(a => a.classList.remove('active'));
+            }
+
+            // Close mobile menu if open
+            closeMobileMenu();
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            const btn = document.getElementById('mobileBtn');
+            nav.classList.toggle('active');
+            btn.classList.toggle('open');
+        }
+
+        function closeMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            const btn = document.getElementById('mobileBtn');
+            nav.classList.remove('active');
+            if (btn) btn.classList.remove('open');
+        }
     </script>
+
 </body>
 </html>
